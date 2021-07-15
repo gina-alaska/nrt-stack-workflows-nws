@@ -10,5 +10,4 @@ export PATH="$PATH:${SANDY_DATA}/dist/bin:${SANDY_DATA}/dist/vendor/bundle/ruby/
 export RAILS_ENV="production"
 export SANDY_SERVICE="${SANDY_SERVICE:-web}"
 
-cd $SANDY_DATA/dist
 
