@@ -47,7 +47,7 @@ steps[:scmi_awips] = Step.where(name: "MetopC_SCMIAwips").first_or_create({
 
 #SCMI LDM
 steps[:scmi_ldm] = Step.where(name: "MetopC_SCMILDMInject").first_or_create({
-  command: "pqinsert.rb {{job.input_path}}",
+  command: "pqinsert.rb -t {{workspace}} {{job.input_path}}",
   queue: 'ldm',
   producer: false,
   parent: steps[:scmi_awips],
@@ -78,7 +78,7 @@ steps[:mirs_awips] = Step.where(name: "MetopCMirsAwips").first_or_create({
 
 #AWIPS LDM
 steps[:mirs_awips_ldm] = Step.where(name: "MetopSCMILDMInject").first_or_create({
-  command: "pqinsert.rb {{job.input_path}}",
+  command: "pqinsert.rb -t {{workspace}} {{job.input_path}}",
   queue: 'ldm',
   producer: false,
   parent: steps[:mirs_awips],
