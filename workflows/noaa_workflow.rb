@@ -115,7 +115,7 @@
       command: "awips_scmi.rb -m avhrr  -t {{workspace}} {{job.input_path}} {{job.output_path}}",
       parent: steps[:l1]
     })
-    steps[:mirsiscmildm] = Step.where(name: "#{satellite.capitalize}MirsSCMILDMInject").first_or_create(
+    steps[:awips_scmi_ldm] = Step.where(name: "#{satellite.capitalize}AWIPSCMILDMInject").first_or_create(
       command: 'pqinsert.rb -t . {{job.input_path}}',
       queue: 'ldm',
       producer: false,
