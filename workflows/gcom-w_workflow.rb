@@ -43,7 +43,7 @@ steps[:ldm] = Step.where(name: 'Amsr2LdmInject').first_or_create({
 steps[:gtiff_l2] = Step.where(name: "generate_amsr2_geotif").first_or_create({
   command: "generate_amsr2_geotif.rb -t {{workspace}} {{job.input_path}} {{job.output_path}}",
   queue: "polar2grid",
-  enabled: true,
+  enabled: false,
   processing_level: ProcessingLevel.where(name: 'geotiff_l1').first_or_create,
   sensor: Sensor.where(name: 'amsr2').first_or_create,
   parent: steps[:level2]
@@ -53,7 +53,7 @@ steps[:gtiff_l2] = Step.where(name: "generate_amsr2_geotif").first_or_create({
 steps[:gtiff_feeder] = Step.where(name: "Amsr2_Level2_Feeder").first_or_create({
   command: "feeder_geotif.rb -m amsr2_level2 -t {{workspace}} {{job.input_path}} {{job.output_path}}",
   queue: "geotiff",
-  enabled: true,
+  enabled: false,
   processing_level: ProcessingLevel.where(name: 'geotiff_l2').first_or_create,
   sensor: Sensor.where(name: 'amsr2').first_or_create,
   parent: steps[:gtiff_l2]
