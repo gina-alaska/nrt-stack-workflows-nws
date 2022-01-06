@@ -7,8 +7,9 @@
   {name: 'noaa18', norad_name: 'NOAA 18' },
   {name: 'noaa19', norad_name: 'NOAA 19' },
   {name: 'noaa20', norad_name: 'NOAA 20' },
-  {name: 'metop-b', norad_name: 'METOP-B' }, 
+  {name: 'metop-b', norad_name: 'METOP-B' },
   {name: 'metop-c', norad_name: 'METOP-C' },
+  {name: 'gcom-w', norad_name: 'GCOM-W' },
 ].each do |satellite|
   Satellite.where(name: satellite[:name]).first_or_create(norad_name: satellite[:norad_name])
 end
@@ -29,6 +30,10 @@ s = Sensor.where(name: 'avhrr').first_or_create do |s|
   s.satellites = Satellite.where(name: %w{15 18 19}.map{|ii| "noaa#{ii}"})
   s.satellites << Satellite.where(name: 'metop-b')
   s.satellites << Satellite.where(name: 'metop-c')
+end
+
+s = Sensor.where(name: 'amsr2').first_or_create do |s|
+  s.satellites = Satellite.where(name: 'gcom-w')
 end
 
 #Seed Facilities
