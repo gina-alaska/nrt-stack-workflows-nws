@@ -24,17 +24,9 @@ steps[:ldm] = Step.where(name: "MetopC_ACSPO_L2_SCMI_Ldminsert").first_or_create
   producer: false,
   processing_level: ProcessingLevel.where(name: 'sst_scmi').first_or_create,
   sensor: Sensor.where(name: 'avhrr').first_or_create,
-  parent: steps[:acspo]
+  parent: steps[:scmi]
 })
 
-
-steps[:heap_ldm] = Step.where(name: 'MetopCNucapsLdmInject').first_or_create({
-  command: 'pqinsert.rb -t . {{job.input_path}}',
-  queue: 'ldm',
-  producer: false,
-  parent: steps[:heap_covert],
-  enabled: true
-})
 
 #metop-b
 steps = {}
@@ -61,5 +53,5 @@ steps[:ldm] = Step.where(name: "MetopB_ACSPO_L2_SCMI_Ldminsert").first_or_create
   producer: false,
   processing_level: ProcessingLevel.where(name: 'sst_scmi').first_or_create,
   sensor: Sensor.where(name: 'avhrr').first_or_create,
-  parent: steps[:acspo]
+  parent: steps[:scmi]
 })
